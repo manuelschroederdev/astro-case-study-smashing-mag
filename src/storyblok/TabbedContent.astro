@@ -1,0 +1,13 @@
+---
+import { storyblokEditable } from '@storyblok/astro'
+import TabbedContent from './TabbedContent.vue'
+//import TabbedContent from './TabbedContent.svelte'
+
+const { blok } = Astro.props
+---
+
+<section {...storyblokEditable(blok)} class='container py-12'>
+  {blok.directive === 'load' && <TabbedContent blok={blok} client:load />}
+  {blok.directive === 'idle' && <TabbedContent blok={blok} client:idle />}
+  {blok.directive === 'visible' && <TabbedContent blok={blok} client:visible />}
+</section>
